@@ -65,7 +65,7 @@ pip install requests beautifulsoup4
 pip install xgboost shap tensorflow seaborn
 ```
 Running the Notebook
-Open raghulch_assignment4.ipynb in Jupyter or Colab and execute cells sequentially:
+Open ipynb in Jupyter or Colab and execute cells sequentially:
 
 Downloader: Creates tier-based directories and downloads city datasets.
 
