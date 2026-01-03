@@ -77,24 +77,25 @@ Tier-wise & Cross-tier Analysis: Trains tier-level models and evaluates cross-ti
 
 All file paths follow a consistent data/*/_listings.csv convention—no manual edits required.
 
-Data Snapshot Reference
+### Data Snapshot Reference
 The downloader always selects the most recent available dataset at runtime. For documentation, representative snapshots are summarized below:
 
-City	Tier	Snapshot Month	Listings
-New York City	Big	Oct 2025	36,111
-Los Angeles	Big	Sep 2025	45,886
-San Francisco	Big	Sep 2025	7,780
-Chicago	Big	May 2025	6,804
-Austin	Medium	May 2025	15,187
-Seattle	Medium	Sep 2025	6,295
-Denver	Medium	Sep 2025	4,910
-Portland	Medium	Sep 2025	4,425
-Asheville	Small	Jun 2025	2,876
-Santa Cruz County	Small	Jun 2025	1,739
-Salem (OR)	Small	Sep 2025	531
-Columbus	Small	Sep 2025	2,877
+| City               | Tier   | Data Snapshot Month | Listings Count |
+|-------------------|--------|----------------------|----------------|
+| New York City     | Big    | Oct 2025             | 36,111         |
+| Los Angeles       | Big    | Sep 2025             | 45,886         |
+| San Francisco     | Big    | Sep 2025             | 7,780          |
+| Chicago           | Big    | May 2025             | 6,804          |
+| Austin            | Medium | May 2025             | 15,187         |
+| Seattle           | Medium | Sep 2025             | 6,295          |
+| Denver            | Medium | Sep 2025             | 4,910          |
+| Portland          | Medium | Sep 2025             | 4,425          |
+| Asheville         | Small  | Jun 2025             | 2,876          |
+| Santa Cruz County | Small  | Jun 2025             | 1,739          |
+| Salem-OR          | Small  | Sep 2025             | 531            |
+| Columbus          | Small  | Sep 2025             | 2,877          |
 
-Preprocessing and Feature Engineering
+### Preprocessing and Feature Engineering
 Numeric Cleaning
 Removes currency symbols and converts prices to numeric format.
 
@@ -122,7 +123,7 @@ Reduces extreme values while preserving the bulk of observations.
 
 Uses before/after inspection functions and boxplots to confirm stability.
 
-Engineered Features
+### Engineered Features
 Key engineered attributes include:
 
 price_per_bedroom
@@ -141,7 +142,7 @@ occupancy_estimate
 
 The final model input combines cleaned numeric features, encoded categoricals, and all engineered variables to predict log(price).
 
-Key Findings
+### Key Findings
 City-Level Performance
 XGBoost consistently achieved the lowest RMSE and MAE and the highest R² across all 12 cities.
 
@@ -158,7 +159,7 @@ NN_v2 outperformed NN_v1 in most tier-based settings.
 
 Neural models struggled significantly in small-tier markets due to limited data.
 
-Cross-Tier Generalization Analysis
+### Cross-Tier Generalization Analysis
 To study distribution shift, composite neural networks were trained on one tier and evaluated on others:
 
 Large → Medium/Small: Strong generalization, especially with NN_v2.
@@ -169,9 +170,9 @@ Medium → Small: Both models transferred moderately well.
 
 Small → Medium/Big: Poor performance overall; NN_v2 less severe degradation.
 
-Conclusion: NN_v2 generalizes better than NN_v1, but models trained on richer markets transfer best. Small-market data does not scale upward effectively.
+**Conclusion:** NN_v2 generalizes better than NN_v1, but models trained on richer markets transfer best. Small-market data does not scale upward effectively.
 
-Overall Conclusions
+### Overall Conclusions
 XGBoost is the clear winner, delivering the most accurate and stable results across all cities and tiers.
 
 NN_v2 represents a meaningful architectural improvement over NN_v1 but remains inferior to XGBoost for tabular Airbnb pricing data.
