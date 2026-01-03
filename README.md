@@ -59,9 +59,11 @@ The notebook is optimized for **Google Colab** but runs in any Python 3.x enviro
 - tensorflow / keras  
 
 In Colab, dependencies are installed using:
+
 ```bash
 pip install requests beautifulsoup4
 pip install xgboost shap tensorflow seaborn
+```
 Running the Notebook
 Open raghulch_assignment4.ipynb in Jupyter or Colab and execute cells sequentially:
 
